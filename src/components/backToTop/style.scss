@@ -1,0 +1,21 @@
+@import "../../mixins.scss";
+
+.back-to-top-button {
+    position: fixed;
+    bottom: -60px;
+    right: 20px;
+    background: var(--gradient);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    transition: bottom 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.back-to-top-button.visible {
+    @include md{
+        bottom: 20px;
+        z-index: 20;
+    }
+}
