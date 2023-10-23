@@ -8,6 +8,7 @@ import Animation from './animation/Animation';
 import Anime from './anime/Anime';
 import Korean from './korean/Korean';
 import TopRatedAnime from './topRatedAnime/TopRatedAnime';
+import Indian from './indian/Indian';
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
       <Anime />
       <TopRatedAnime />
       <Korean />
+      <Indian />
 
 
     </div>
