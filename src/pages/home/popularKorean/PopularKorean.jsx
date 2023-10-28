@@ -5,7 +5,7 @@ import SwitchTabs from '../../../components/switchTabs/SwitchTabs';
 import Carousel from '../../../components/carousel/Carousel';
 import { fetchDataFromApi } from '../../../utils/api';
 
-const Korean = () => {
+const PopularKorean = () => {
 
     const [endpoint, setEndpoint] = useState("movie");
     const [data1, setData1] = useState(null);
@@ -17,7 +17,7 @@ const Korean = () => {
 
     const fetchInitialData = () => {
         setLoading(true);
-        fetchDataFromApi(`/discover/${endpoint}?&with_origin_country=KR`).then((res) => {
+        fetchDataFromApi(`/discover/${endpoint}?sort_by=vote_count.desc&with_origin_country=KR`).then((res) => {
             setData1(res);
             setLoading(false);
         });
@@ -31,7 +31,7 @@ const Korean = () => {
     return (
         <div className='carouselSection'>
             <ContentWrapper>
-                <span className='carouselTitle'>Trending in Korea</span>
+                <span className='carouselTitle'>Popular Korean</span>
 
                 <SwitchTabs data={["Movies", "TV Shows"]} onTabChange={onTabChange} />
             </ContentWrapper>
@@ -44,4 +44,4 @@ const Korean = () => {
     )
 }
 
-export default Korean;
+export default PopularKorean;

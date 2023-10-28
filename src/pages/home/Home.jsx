@@ -9,6 +9,7 @@ import Anime from './anime/Anime';
 import Korean from './korean/Korean';
 import TopRatedAnime from './topRatedAnime/TopRatedAnime';
 import Indian from './indian/Indian';
+import PopularKorean from './popularKorean/PopularKorean';
 
 
 const Home = () => {
@@ -22,6 +23,7 @@ const Home = () => {
       <Anime />
       <TopRatedAnime />
       <Korean />
+      <PopularKorean />
       <Indian />
 
 

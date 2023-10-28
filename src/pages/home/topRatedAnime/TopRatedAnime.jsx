@@ -11,22 +11,17 @@ const TopRatedAnime = () => {
     const [data1, setData1] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    let filters = {};
-    filters.with_genres = 16;
-
     const onTabChange = (tab) => {
         setEndpoint(tab === "Movies" ? "movie" : "tv");
     };
 
     const fetchInitialData = () => {
         setLoading(true);
-        // fetchDataFromApi(`/discover/${endpoint}?&with_origin_country=JP`, filters).then((res) => {
-        fetchDataFromApi(`/${endpoint}/top_rated?&with_origin_country=JP`, filters).then((res) => {
+        fetchDataFromApi(`/discover/${endpoint}?sort_by=vote_count.desc&with_genres=16&with_origin_country=JP`).then((res) => {
             setData1(res);
             setLoading(false);
         });
     };
-
 
     useEffect(() => {
         fetchInitialData();
@@ -35,7 +30,7 @@ const TopRatedAnime = () => {
     return (
         <div className='carouselSection'>
             <ContentWrapper>
-                <span className='carouselTitle'>Top Rated Anime</span>
+                <span className='carouselTitle'>Popular Anime</span>
 
                 <SwitchTabs data={["Movies", "TV Shows"]} onTabChange={onTabChange} />
             </ContentWrapper>

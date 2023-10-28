@@ -13,11 +13,19 @@ const HeroBanner = () => {
     const navigate = useNavigate();
     const { url } = useSelector((state) => state.home);
     const {data, loading} = useFetch("/movie/upcoming");
-
     useEffect(() => {
-        const bg = url.backdrop + data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
-        setBackground(bg);
-    }, [data]);
+        // Check if data is defined before accessing properties
+        if (data && data.results && data.results.length > 0) {
+          const randomIndex = Math.floor(Math.random() * data.results.length);
+          const backdropPath = data.results[randomIndex].backdrop_path;
+      
+          // Check if url and backdropPath are defined before setting the background
+          if (url && url.backdrop && backdropPath) {
+            const bg = url.backdrop + backdropPath;
+            setBackground(bg);
+          }
+        }
+      }, [data, url]);
 
     const searchQueryHandler = (event) => {
         if(event.key === "Enter" && query.length > 0){
