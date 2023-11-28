@@ -24,6 +24,7 @@ const DetailsBanner = ({ video, crew }) => {
     const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
     const { url } = useSelector((state) => state.home);
+    console.log(data);
 
     const _genres = data?.genres?.map((g) => g.id);
 
@@ -57,7 +58,7 @@ const DetailsBanner = ({ video, crew }) => {
                                     </div>
                                     <div className="right">
                                         <div className="title">
-                                            {`${data.name || data.title} (${dayjs(data?.release_date).format("YYYY")})`}
+                                            {`${data.name || data.title} (${dayjs(data?.release_date || data?.first_air_date).format("YYYY")})`}
                                         </div>
                                         <div className="subtitle">
                                             {data.tagline}
@@ -99,13 +100,13 @@ const DetailsBanner = ({ video, crew }) => {
                                                     </span>
                                                 </div>
                                             )}
-                                            {data.release_date && (
+                                            {(data.release_date || data.first_air_date) && (
                                                 <div className="infoItem">
                                                     <span className="text bold">
                                                         Release Date:{" "}
                                                     </span>
                                                     <span className="text">
-                                                        {dayjs(data.release_date).format("MMM D, YYYY")}
+                                                        {dayjs(data.release_date || data.first_air_date).format("MMM D, YYYY")}
                                                     </span>
                                                 </div>
                                             )}
@@ -170,8 +171,8 @@ const DetailsBanner = ({ video, crew }) => {
 
                                     </div>
                                 </div>
-                                <VideoPopup 
-                                    show = {show}
+                                <VideoPopup
+                                    show={show}
                                     setShow={setShow}
                                     videoId={videoId}
                                     setVideoId={setVideoId}

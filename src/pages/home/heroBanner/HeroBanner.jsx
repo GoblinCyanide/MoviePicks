@@ -13,6 +13,7 @@ const HeroBanner = () => {
     const navigate = useNavigate();
     const { url } = useSelector((state) => state.home);
     const {data, loading} = useFetch("/movie/upcoming");
+    console.log(url);
     useEffect(() => {
         // Check if data is defined before accessing properties
         if (data && data.results && data.results.length > 0) {
