@@ -15,6 +15,12 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
     const posterUrl = data?.poster_path
         ? url.poster + data?.poster_path
         : PosterFallback;
+
+    let release_date = "";
+    release_date = (data?.release_date || data?.first_air_date);
+    if (!release_date) {
+        release_date = undefined;
+    }
     return (
         <div
             className="movieCard"
@@ -34,7 +40,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
             <div className="textBlock">
                 <span className="title">{data.title || data.name}</span>
                 <span className="date">
-                    {dayjs(data?.release_date || data?.first_air_date).format("MMM D, YYYY")}
+                    {dayjs(release_date).format("MMM D, YYYY")}
                 </span>
             </div>
         </div>

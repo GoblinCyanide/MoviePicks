@@ -62,6 +62,11 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                     <div className="carouselItems" ref={carouselContainer}>
                         {data?.map((item) => {
                             const posterUrl = item.poster_path ? url.poster + item.poster_path : PosterFallback;
+                            let release_date = "";
+                            release_date = (item?.release_date || item?.first_air_date);
+                            if (!release_date) {
+                                release_date = undefined;
+                            }
                             return (
                                 <div
                                     key={item.id}
@@ -78,7 +83,7 @@ const Carousel = ({ data, loading, endpoint, title }) => {
                                             {item.title || item.name}
                                         </span>
                                         <span className="date">
-                                            {dayjs(item?.release_date || item?.first_air_date).format("MMM D, YYYY")}
+                                            {dayjs(release_date).format("MMM D, YYYY")}
                                         </span>
                                     </div>
 

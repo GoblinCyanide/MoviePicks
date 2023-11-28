@@ -14,6 +14,7 @@ const Trending = () => {
         setEndpoint(tab === "Day" ? "day" : "week");
     };
 
+    console.log(data?.results);
     return (
         <div className='carouselSection'>
             <ContentWrapper>
